@@ -1,0 +1,31 @@
+.btn {
+  max-width: 200px;
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  border: none;
+  padding: 13px 30px;
+  font: inherit;
+  font-weight: bold;
+  color: $white;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  background-color: $bg-blue-color;
+  border-radius: 3px;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 2px 10px rgba($black, 0.4);
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+
+  &--disabled {
+    pointer-events: none;
+    background-color: $bg-blue-color-disabled;
+  }
+}

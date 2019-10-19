@@ -1,0 +1,29 @@
+.reg-form {
+  position: fixed;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  max-width: 480px;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0 0 10px rgba($black, 0.1);
+  border-radius: 3px;
+  transform: translate(-50%, -50%);
+}
+
+.form__wrap {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.form__label {
+  display: block;
+}
+
+.form__input {
+  appearance: none;
+  border: none;
+
+}
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Алексей Хабиров - тестовое задание МК</title>
+  <meta name="description" content="Тестовое задание МК">
+  <meta name="keywords" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"
+        crossorigin="anonymous">
+  <meta name="theme-color" content="#000">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+  <h1 class="visually-hidden">
+    Тестовое задание Московский Комсомолец
+  </h1>
+</header>
+<main class="main">
+  <div class="container">
+    <h2 class="visually-hidden">
+      Форма регистрации
+    </h2>
+<!--    <div class="reg">-->
+<!--      <a class="reg__btn btn" href="registration.html">-->
+<!--        Регистрация-->
+<!--      </a>-->
+<!--    </div>-->
+  </div>
+  <section class="reg-form">
+    <form class="form" method="post">
+      <fieldset class="form__wrap">
+        <legend class="form__title">
+          Регистрация
+        </legend>
+        <label class="form__label" for="email">
+          E-mail
+        </label>
+        <input class="form__input" type="email" name="email" id="email">
+        <label class="form__label" for="nickname">
+          Никнейм
+        </label>
+        <input class="form__input" type="text" name="nickname" id="nickname">
+        <label class="form__label" for="password">
+          Пароль
+        </label>
+        <input class="form__input" type="password" name="password" id="password">
+        <label class="form__label" for="password-test">
+          Пароль еще раз
+        </label>
+        <input class="form__input" type="password" id="password-test">
+        <input class="form__checkbox visually-hidden" type="checkbox" id="privacy-policy" required>
+        <label class="form__checkbox-label" for="privacy-policy">
+          Я принимаю условия
+          <a class="form__link" href="privacy-policy.html" target="_blank">
+            Пользовательского соглашения
+          </a>
+        </label>
+      </fieldset>
+      <button class="form__btn btn" type="submit">
+        Зарегистрироваться
+      </button>
+    </form>
+  </section>
+</main>
+<footer class="footer">
+  <h2 class="visually-hidden">
+    Подвал тестового задания
+  </h2>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

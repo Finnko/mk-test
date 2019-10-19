@@ -1,0 +1,15 @@
+.container {
+  width: 320px;
+  padding: 0 25px;
+  margin: 0 auto;
+
+  @include respond-above($tablet) {
+    width: 768px;
+    padding: 0 40px;
+  }
+
+  @include respond-above($desktop) {
+    width: 1440px;
+    padding: 0 60px;
+  }
+}

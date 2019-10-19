@@ -1,0 +1,31 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  background-color: $white;
+  color: $text-dark-grey;
+  letter-spacing: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sprite {
+  display: none;
+}
