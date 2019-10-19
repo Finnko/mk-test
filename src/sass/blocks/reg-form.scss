@@ -5,10 +5,12 @@
   top: 50%;
   max-width: 480px;
   width: 100%;
+  padding: 40px;
   background: #FFFFFF;
   box-shadow: 0 0 10px rgba($black, 0.1);
   border-radius: 3px;
   transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
 }
 
 .form__wrap {
@@ -17,13 +19,68 @@
   border: none;
 }
 
+.form__title {
+  margin-bottom: 30px;
+  font-size: 24px;
+  line-height: 28px;
+}
+
 .form__label {
-  display: block;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .form__input {
+  width: 100%;
+  display: block;
+  border: 1px solid $border-grey-color;
+  margin-bottom: 30px;
+  padding: 11px 20px 13px;
+  font: inherit;
+  color: $black;
+  outline: none;
   appearance: none;
-  border: none;
+  transition: border 0.3s;
 
+  &::placeholder {
+    color: $black;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  &:hover {
+    border: 1px solid darken($border-grey-color, 10%);
+  }
+
+  &:focus {
+    border: 1px solid $bg-light-blue-color;
+  }
+
+  &--error {
+    border: 1px solid $text-error-color;
+  }
 }
 
+.form__checkbox-label {
+  display: block;
+  margin-bottom: 35px;
+}
+
+.form__btn {
+  text-align: center;
+}
+
+
+@keyframes move {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -2000px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
