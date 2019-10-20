@@ -5,3 +5,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.reg__btn--disabled {
+  pointer-events: none;
+  background-color: $text-approve-color;
+}

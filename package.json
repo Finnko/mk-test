@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gulp build",
     "dev": "gulp watch --dev --sync",
-    "stylelint": "stylelint \"source/sass/**/*.scss\" --syntax scss",
+    "stylelint": "stylelint \"src/sass/**/*.scss\" --syntax scss",
     "test": "npm run stylelint"
   },
   "keywords": [],

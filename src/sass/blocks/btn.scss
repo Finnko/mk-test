@@ -24,10 +24,6 @@
   }
 
   &:disabled {
-    background-color: $bg-light-blue-color;
-  }
-
-  &--disabled {
     pointer-events: none;
     background-color: $bg-light-blue-color;
   }

@@ -7,7 +7,7 @@
   max-width: 480px;
   width: 100%;
   padding: 40px;
-  background: #FFFFFF;
+  background: $white;
   box-shadow: 0 0 10px rgba($black, 0.1);
   border-radius: 3px;
   transform: translate(-50%, -50%);
@@ -166,7 +166,6 @@
   animation: moveDown 0.6s;
   animation-timing-function: ease-out;
 }
-
 
 @keyframes moveDown {
   0% {
