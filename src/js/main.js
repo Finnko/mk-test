@@ -27,9 +27,9 @@ let closePopup = function () {
 };
 
 let passwordRulesMap = {
-  digits: /(?=.*[0-9])/g,
-  chars: /(?=.*[a-z])(?=.*[A-Z])/g,
-  length: /[.+]{6,32}/g
+  digits: /(?=.*[0-9])/,
+  chars: /(?=.*[a-z])(?=.*[A-Z])/,
+  length: /^.{6,32}$/
 };
 
 let checkPassword = function () {
@@ -46,8 +46,6 @@ let checkPassword = function () {
     }
   });
 };
-
-inputPassword.addEventListener('input', checkPassword);
 
 let formSubmitHandler = function (evt) {
   evt.preventDefault();
@@ -67,6 +65,8 @@ closeBtn.addEventListener('click', function () {
   closePopup();
 });
 
+
+inputPassword.addEventListener('input', checkPassword);
 form.addEventListener('submit', formSubmitHandler);
 //
 // submitBtn.disabled = true;
