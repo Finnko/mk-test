@@ -1,8 +1,7 @@
 .btn {
   max-width: 200px;
   width: 100%;
-  display: inline-block;
-  vertical-align: top;
+  display: block;
   border: none;
   padding: 13px 30px;
   font: inherit;
@@ -13,7 +12,7 @@
   cursor: pointer;
   background-color: $bg-blue-color;
   border-radius: 3px;
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
 
   &:hover,
   &:focus {

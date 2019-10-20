@@ -1,0 +1,52 @@
+.rules {
+  @include list-none;
+  margin-bottom: 32px;
+  font-size: 12px;
+  line-height: 14px;
+  color: $text-light-grey;
+}
+
+.rules__item {
+  position: relative;
+  padding-left: 19px;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    border: 1px solid $text-light-grey;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: border 0.2s;
+  }
+
+  &--approve {
+    color: $text-approve-color;
+  }
+
+  &--error {
+    color: $text-error-color;
+  }
+
+  &--approve::before {
+    border: 1px solid $text-approve-color;
+    background-image: url("../img/rule-tick.svg");
+    background-size: 9px 8px;
+    background-position-y: 2px;
+  }
+
+  &--error::before {
+    border: 1px solid $text-error-color;
+    background-image: url("../img/rule-cross.svg");
+    background-size: 8.5px;
+
+  }
+}

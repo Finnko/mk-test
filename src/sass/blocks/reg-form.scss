@@ -10,7 +10,36 @@
   box-shadow: 0 0 10px rgba($black, 0.1);
   border-radius: 3px;
   transform: translate(-50%, -50%);
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
+}
+
+.form {
+  position: relative;
+}
+
+.form__close-btn {
+  position: absolute;
+  top: -8px;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background-color: $white;
+  transition: opacity 0.2s;
+
+  &:hover .form__btn-icon {
+    opacity: 0.85;
+  }
+
+  &:focus .form__btn-icon path {
+    fill: $bg-light-blue-color;
+  }
+
+  &:active {
+    top: -7px;
+  }
 }
 
 .form__wrap {
@@ -32,17 +61,25 @@
   cursor: pointer;
 }
 
+.form__note {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 12px;
+  line-height: 14px;
+  color: $text-light-grey;
+}
+
 .form__input {
   width: 100%;
   display: block;
   border: 1px solid $border-grey-color;
   margin-bottom: 30px;
-  padding: 11px 20px 13px;
+  padding: 12px 20px 10px;
   font: inherit;
   color: $black;
   outline: none;
   appearance: none;
-  transition: border 0.3s;
+  transition: border 0.2s;
 
   &::placeholder {
     color: $black;
@@ -61,15 +98,66 @@
   &--error {
     border: 1px solid $text-error-color;
   }
+
+  &:nth-of-type(3) {
+    margin-bottom: 5px;
+  }
 }
 
 .form__checkbox-label {
+  position: relative;
   display: block;
   margin-bottom: 35px;
+  padding-left: 18px;
+  color: $black;
+  font-size: 12px;
+  line-height: 14px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border: 1px solid $border-grey-color;
+    border-radius: 3px;
+    transition: border 0.2s, background-color 0.2s;
+  }
+
+  &:hover::before {
+    border: 1px solid darken($border-grey-color, 10%);
+  }
+}
+
+.form__checkbox:focus + .form__checkbox-label::before {
+  border: 1px solid $bg-light-blue-color;
+}
+
+.form__checkbox:checked + .form__checkbox-label::before {
+  border: 1px solid $bg-light-blue-color;
+  background-color: $bg-light-blue-color;
+  background-image: url("../img/form-tick.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10px;
+}
+
+.form__link {
+  border-bottom: 1px solid transparent;
+  color: $bg-light-blue-color;
+  text-decoration: none;
+  transition: border 0.2s;
+
+  &:hover,
+  &:focus {
+    border-bottom: 1px solid rgba($bg-light-blue-color, 0.7);
+  }
 }
 
 .form__btn {
-  text-align: center;
+  display: block;
+  margin: 0 auto;
 }
 
 
