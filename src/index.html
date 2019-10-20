@@ -43,33 +43,33 @@
         <label class="form__label" for="email">
           E-mail
         </label>
-        <input class="form__input" type="email" name="email" id="email">
+        <input class="form__input" type="email" name="email" id="email" required>
         <label class="form__label" for="nickname">
           Никнейм
         </label>
-        <input class="form__input" type="text" name="nickname" id="nickname">
+        <input class="form__input" type="text" name="nickname" id="nickname" minlength="3" maxlength="40" required>
         <label class="form__label" for="password">
           Пароль
         </label>
-        <input class="form__input" type="password" name="password" id="password">
+        <input class="form__input form__input--pass" type="password" name="password" id="password" required>
         <p class="form__note">
           Пароль должен содержать
         </p>
         <ul class="form__rules rules">
-          <li class="rules__item">
+          <li class="rules__item" data-pattern="length">
             от 6 до 32 символов
           </li>
-          <li class="rules__item rules__item--error">
+          <li class="rules__item" data-pattern="digits">
             цифру
           </li>
-          <li class="rules__item rules__item--approve">
+          <li class="rules__item" data-pattern="chars">
             заглавную и строчную буквы
           </li>
         </ul>
         <label class="form__label" for="password-test">
           Пароль еще раз
         </label>
-        <input class="form__input" type="password" id="password-test">
+        <input class="form__input" type="password" id="password-test" required>
         <input class="form__checkbox visually-hidden" type="checkbox" id="privacy-policy" required>
         <label class="form__checkbox-label" for="privacy-policy">
           Я принимаю условия

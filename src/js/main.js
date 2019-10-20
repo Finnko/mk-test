@@ -1,12 +1,14 @@
 "use strict";
 
-import { isEscEvent } from "./util";
+import {isEscEvent, prepareFormData} from "./util";
 
 const regBtn = document.querySelector('.reg__btn');
 const popup = document.querySelector('.reg-form');
 const closeBtn = popup.querySelector('.form__close-btn');
 const form = popup.querySelector('.form');
 const submitBtn = popup.querySelector('.form__btn');
+const inputPassword = popup.querySelector('.form__input--pass');
+const passwordRules = popup.querySelectorAll('.rules__item');
 
 let popupEscClickHandler = function (evt) {
   isEscEvent(evt, closePopup);
@@ -24,14 +26,28 @@ let closePopup = function () {
   document.removeEventListener('keydown', popupEscClickHandler);
 };
 
-let prepareFormData = function (data) {
-  let object = {};
-
-  data.forEach(function(value, key){
-    object[key] = value;
-  });
-  return JSON.stringify(object);
+let passwordRulesMap = {
+  digits: /(?=.*[0-9])/g,
+  chars: /(?=.*[a-z])(?=.*[A-Z])/g,
+  length: /[.+]{6,32}/g
 };
+
+let checkPassword = function () {
+  passwordRules.forEach(function (item) {
+    let rule = item.dataset.pattern;
+    let pattern = passwordRulesMap[rule];
+
+    if (pattern.test(inputPassword.value.trim())) {
+      item.classList.remove('rules__item--error');
+      item.classList.add('rules__item--approve');
+    } else if (item.classList.contains('rules__item--approve')) {
+      item.classList.remove('rules__item--approve');
+      item.classList.add('rules__item--error');
+    }
+  });
+};
+
+inputPassword.addEventListener('input', checkPassword);
 
 let formSubmitHandler = function (evt) {
   evt.preventDefault();
