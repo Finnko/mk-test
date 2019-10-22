@@ -1,7 +1,7 @@
 .reg-form {
   display: none;
   position: fixed;
-  z-index: 3;
+  z-index: 1;
   left: 50%;
   top: 50%;
   max-width: 480px;
@@ -88,20 +88,39 @@
     line-height: 16px;
   }
 
-  &:hover {
-    border: 1px solid darken($border-grey-color, 10%);
-  }
-
   &:focus {
     border: 1px solid $bg-light-blue-color;
   }
 
   &--error {
     border: 1px solid $text-error-color;
-  }
 
-  &:nth-of-type(3) {
+    &:focus {
+      border: 1px solid $text-error-color;
+    }
+  }
+}
+
+.form__element {
+  position: relative;
+
+  &:nth-of-type(3) .form__input {
     margin-bottom: 5px;
+  }
+}
+
+.form__text-error {
+  position: absolute;
+  left: 0;
+  top: 68px;
+  margin: 0;
+  color: $text-error-color;
+  font-size: 12px;
+  line-height: 14px;
+
+  &--pass {
+    top: auto;
+    bottom: -30px;
   }
 }
 
