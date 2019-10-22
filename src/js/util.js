@@ -1,16 +1,9 @@
 "use strict";
 
 const ESC_KEYCODE = 27;
-const ENTER_KEYCODE = 13;
 
 let isEscEvent = function (evt, action) {
   if (evt.keyCode === ESC_KEYCODE) {
-    action();
-  }
-};
-
-let isEnterEvent = function (evt, action) {
-  if (evt.keyCode === ENTER_KEYCODE) {
     action();
   }
 };
@@ -24,4 +17,10 @@ let prepareFormData = function (data) {
   return JSON.stringify(object);
 };
 
-export { isEnterEvent, isEscEvent, prepareFormData }
+let checkFieldsValidity = function (inputs) {
+  return Array.from(inputs).every(function (item) {
+    return !item.classList.contains('form__input--error');
+  })
+};
+
+export { isEscEvent, prepareFormData, checkFieldsValidity };
