@@ -1,6 +1,8 @@
-"use strict";
+'use strict';
 
-import {checkFieldsValidity} from "./util";
+import { checkValues } from "./util";
+
+const FIELD_ERROR_CLASS = 'form__input--error';
 
 const popup = document.querySelector('.reg-form');
 const form = popup.querySelector('.form');
@@ -12,62 +14,63 @@ const passwordRules = form.querySelectorAll('.rules__item');
 const formInputs = form.querySelectorAll('.form__input');
 const submitBtn = form.querySelector('.form__btn');
 
-let checkPassTest = function (message) {
-  if (passTestField.value && passTestField.value !== passwordField.value) {
-    passTestField.classList.add('form__input--error');
-    passTestField.nextElementSibling.textContent = message;
-  } else {
-    passTestField.classList.remove('form__input--error');
-    passTestField.nextElementSibling.textContent = '';
-  }
+const checkSamePassword = function (message) {
+  const isMatched = passTestField.value && passTestField.value !== passwordField.value;
+  passTestField.classList.toggle(FIELD_ERROR_CLASS, isMatched);
+  passTestField.nextElementSibling.textContent = isMatched ? message : '';
 };
 
-let checkPassword = function (message) {
-  if (passwordField.value && passwordField.value === emailField.value ||
-    passwordField.value && passwordField.value === nicknameField.value) {
-    passwordField.classList.add('form__input--error');
-    passwordField.nextElementSibling.textContent = message;
-  } else {
-    passwordField.classList.remove('form__input--error');
-    passwordField.nextElementSibling.textContent = '';
-  }
+const checkPassword = function (message) {
+  const isPasswordError = checkValues(emailField, passwordField) && checkValues(nicknameField, passwordField);
+  passwordField.classList.toggle(FIELD_ERROR_CLASS, isPasswordError);
+  passwordField.nextElementSibling.textContent = isPasswordError ? message : '';
 };
 
-let formRulesMap = {
+const formRulesMap = {
   email: {
     rule: /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i,
     message: 'Введите корректный адрес email',
   },
   nickname: {
-    rule: /^([a-zA-Z])[a-zA-Z0-9_;]{3,40}$/,
+    rule: /^([a-zA-Z])[a-zA-Z0-9_;]{2,40}$/,
     message: 'Имя должно начинаться с буквы и может содержать только латинские буквы, цифры, _, ;. Длина 3-40 символов',
   },
   password: {
     rule: checkPassword,
-    message: 'Пароль соответствует инструкциям и не совпадает с никнеймом или почтовым адресом'
+    message: 'Пароль соответствует инструкциям и не совпадает с никнеймом или почтовым адресом',
   },
   passtest: {
-    rule: checkPassTest,
-    message: 'Пароли не совпадают'
+    rule: checkSamePassword,
+    message: 'Пароли не совпадают',
   }
 };
 
-let passwordRulesMap = {
+const passwordRulesMap = {
   digits: /(?=.*[0-9])/,
   chars: /(?=.*[a-z])(?=.*[A-Z])/,
-  length: /^.{6,32}$/
+  length: /^.{6,32}$/,
 };
 
-let formChangeHandler = function () {
+const resetFieldsErrorClass = function () {
+  formInputs.forEach((item) => {
+    item.classList.remove(FIELD_ERROR_CLASS);
+    item.nextElementSibling.textContent = '';
+  });
+  passwordRules.forEach((item) => {
+    item.classList.remove('rules__item--approve');
+  })
+};
 
-  formInputs.forEach(function (item) {
-    let input = item.dataset.validate;
-    let pattern = formRulesMap[input].rule;
-    let message = formRulesMap[input].message;
+const formChangeHandler = function () {
+  formInputs.forEach((item) => {
+    const input = item.dataset.validate;
+    const pattern = formRulesMap[input].rule;
+    const message = formRulesMap[input].message;
 
     if (typeof pattern !== 'function') {
-      if (item.value !== '' && !pattern.test(item.value.trim())) {
-        item.classList.add('form__input--error');
+      const isFieldCorrect = item.value !== '' && !pattern.test(item.value.trim());
+      if (isFieldCorrect) {
+        item.classList.add(FIELD_ERROR_CLASS);
         item.nextElementSibling.textContent = message;
       }
     } else {
@@ -75,20 +78,20 @@ let formChangeHandler = function () {
     }
   });
 
-  if (form.checkValidity() && checkFieldsValidity(formInputs)) {
+  if (form.checkValidity()) {
     submitBtn.disabled = false;
   }
 };
 
-let formInputHandler = function () {
-
+const fieldInputHandler = function () {
   formInputs.forEach(function (item) {
-    let input = item.dataset.validate;
-    let pattern = formRulesMap[input].rule;
+    const input = item.dataset.validate;
+    const pattern = formRulesMap[input].rule;
 
     if (typeof pattern !== 'function') {
-      if (item.value !== '' && pattern.test(item.value.trim())) {
-        item.classList.remove('form__input--error');
+      const isFieldCorrect = item.value !== '' && pattern.test(item.value.trim());
+      if (isFieldCorrect) {
+        item.classList.remove(FIELD_ERROR_CLASS);
         item.nextElementSibling.textContent = '';
       }
     } else {
@@ -97,12 +100,13 @@ let formInputHandler = function () {
   });
 };
 
-let checkPasswordField = function () {
-  passwordRules.forEach(function (item) {
-    let rule = item.dataset.pattern;
-    let pattern = passwordRulesMap[rule];
+const checkPasswordField = function () {
+  passwordRules.forEach((item) => {
+    const field = item.dataset.pattern;
+    const pattern = passwordRulesMap[field];
+    const isMatched = pattern.test(passwordField.value.trim());
 
-    if (pattern.test(passwordField.value.trim())) {
+    if (isMatched) {
       item.classList.remove('rules__item--error');
       item.classList.add('rules__item--approve');
     } else if (item.classList.contains('rules__item--approve')) {
@@ -112,4 +116,6 @@ let checkPasswordField = function () {
   });
 };
 
-export { formInputHandler, formChangeHandler, checkPasswordField, passwordField, formInputs, form };
+passwordField.addEventListener('input', checkPasswordField);
+
+export { fieldInputHandler, formChangeHandler, resetFieldsErrorClass, form, formInputs };
