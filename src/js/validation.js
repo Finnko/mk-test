@@ -21,9 +21,7 @@ const checkSamePassword = function (message) {
 };
 
 const checkPassword = function (message) {
-  console.log(checkValues(emailField, passwordField));
   const isPasswordError = checkValues(emailField, passwordField) || checkValues(nicknameField, passwordField);
-  console.log(isPasswordError);
   passwordField.classList.toggle(FIELD_ERROR_CLASS, isPasswordError);
   passwordField.nextElementSibling.textContent = isPasswordError ? message : '';
 };
