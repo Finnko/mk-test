@@ -8,4 +8,4 @@
 
 ---
 
-[Демо](http://alexkhab.ru)
+[Демо](http://mk.alexkhab.ru)
