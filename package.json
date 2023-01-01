@@ -15,7 +15,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.3.0",
     "browser-sync": "^2.26.3",
     "del": "^4.1.0",
     "gulp": "^4.0.0",
@@ -38,7 +38,7 @@
     "node-sass": "^4.13.1",
     "stylelint": "10.1.x",
     "stylelint-config-htmlacademy": "0.1.x",
-    "webpack-stream": "^5.2.1"
+    "webpack-stream": "^7.0.0"
   },
   "dependencies": {
     "normalize.css": "^8.0.1"
